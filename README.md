@@ -1,29 +1,113 @@
-# booksystem
+## user
 
-## Project setup
-```
-npm install
-```
+本地搭建mysql，设置账号为root，密码为123456，并创建数据库library，表会自动建
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+`host = http://localhost:1323` 
 
-### Compiles and minifies for production
-```
-npm run build
-```
+### register
 
-### Run your tests
-```
-npm run test
+`POST /user/register`
+
+`data`
+```json
+{
+  "username": "",
+  "password": "",
+  "rePassword": ""
+}
 ```
 
-### Lints and fixes files
-```
-npm run lint
+### login
+
+`POST /user/login`
+
+`data`
+```json
+{
+  "username": "",
+  "password": ""
+}
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+## book
+
+这里的api都需要在请求头加上token
+
+```python
+headers = {
+    "Authorization": "Bearer token"
+}
+```
+
+### get books
+
+`GET /book/books`
+
+`query`
+
+```json
+{
+  "page": "",
+  "perPage": ""
+}
+```
+
+### add books
+
+`POST /book/books`
+
+`data`
+
+```json
+{
+	"name": "book3",
+	"publishing_house": "pub2",
+	"author": "author2",
+	"stock": 10
+}
+```
+
+### update books
+
+`PUT /book/books`
+
+`data`
+
+```json
+{
+        "id": 1,
+        "name": "book1111",
+        "publishing_house": "pub1",
+        "author": "author1",
+        "stock": 10
+}
+```
+
+### delete books
+
+`DELETE /book/books`
+
+`data`
+
+```json
+{
+	"id": 1
+}
+```
+
+### get borrowed books
+
+`GET /book/booklents`
+
+
+### continue borrow
+
+`PUT /book/booklents`
+
+`data`
+
+```json
+{
+	"book_id": 2
+}
+```
